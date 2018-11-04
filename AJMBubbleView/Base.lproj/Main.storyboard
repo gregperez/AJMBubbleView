@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ConstraintSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOo-60-rgm">
+                                <rect key="frame" x="16" y="600" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Grow animate Width Constraint">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="growView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="91R-D9-hsW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCL-Tp-hwp">
+                                <rect key="frame" x="16" y="547" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Grow no animate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="growNoAnimate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yqg-Aj-Pnu"/>
+                                    <action selector="growView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FIL-PJ-JLT"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRz-Nv-p93" customClass="AJMView" customModule="ConstraintSample" customModuleProvider="target">
+                                <rect key="frame" x="141" y="291.5" width="93" height="84"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="Zob-DO-eiz"/>
+                                    <constraint firstAttribute="width" secondItem="cRz-Nv-p93" secondAttribute="height" multiplier="31:28" id="m9R-hU-Iuq"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="AMV-9o-bAG" appends="YES" id="DdQ-Nd-xsD"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cRz-Nv-p93" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8x0-Vj-87T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LOo-60-rgm" secondAttribute="bottom" constant="37" id="LGe-Ik-Mzs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LOo-60-rgm" secondAttribute="trailing" constant="16" id="Lij-F1-f2c"/>
+                            <constraint firstItem="LOo-60-rgm" firstAttribute="top" secondItem="HCL-Tp-hwp" secondAttribute="bottom" constant="23" id="ikh-Ad-OAH"/>
+                            <constraint firstItem="HCL-Tp-hwp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nDC-ti-2xj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HCL-Tp-hwp" secondAttribute="trailing" constant="16" id="p4c-YS-fi1"/>
+                            <constraint firstItem="cRz-Nv-p93" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sM2-HZ-L5Q"/>
+                            <constraint firstItem="LOo-60-rgm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yGt-ZT-9fX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="ajmView" destination="cRz-Nv-p93" id="eqi-s1-j1Z"/>
+                        <outlet property="centerXConstraint" destination="8x0-Vj-87T" id="KiQ-YB-Hiq"/>
+                        <outlet property="centerYConstraint" destination="sM2-HZ-L5Q" id="T2N-0b-14c"/>
+                        <outlet property="widthConstraint" destination="Zob-DO-eiz" id="2Od-XJ-T65"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="AMV-9o-bAG">
+                    <connections>
+                        <action selector="dragging:" destination="BYZ-38-t0r" id="XJb-ys-CSa"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="140" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>
