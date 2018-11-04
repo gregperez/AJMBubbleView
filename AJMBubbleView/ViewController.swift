@@ -64,7 +64,7 @@ class ViewController: UIViewController {
             centerYConstraint.constant = cuadrantPoint.y
             NSLayoutConstraint.activate([centerXConstraint, centerYConstraint ])
             
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
             })
             
@@ -88,17 +88,24 @@ class ViewController: UIViewController {
         } else if point.x >= self.view.bounds.width / 2 &&
             point.y <= self.view.bounds.height / 2 {
             print("Cuadrante 2")
-            return CGPoint.zero
+            
+            let newX = 2 * self.view.bounds.width / 6
+            return CGPoint(x: newX, y: -2 * y)
 
 
         } else if point.x >= 0 && point.x < self.view.bounds.width / 2 &&
             point.y >= self.view.bounds.height / 2 {
             print("Cuadrante 3")
-                  return CGPoint.zero
+            
+            return CGPoint(x: -2 * x, y: 2 * y)
+            
+            
         } else if point.x >= self.view.bounds.width / 2 &&
             point.y >= self.view.bounds.height / 2 {
             print("Cuadrante 4")
-                  return CGPoint.zero
+            let newX = 2 * self.view.bounds.width / 6
+
+            return CGPoint(x: newX, y: 2 * y)
         }
         return CGPoint.zero
 
