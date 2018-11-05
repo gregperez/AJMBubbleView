@@ -36,11 +36,24 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         originalConstraint = widthConstraint.constant
         print("Frame \(ajmView.frame)")
-        // Do any additional setup after loading the view, typically from a nib.
+       
+        placeTopLeft()
+    }
 
-    @IBAction func dragging(_ sender: UIPanGestureRecognizer) {
-     //   print("Moving!")
+    func placeTopLeft() {
         
+        deactivateConstraintsIfNeeded()
+        
+        let destinyPoint = calculateDestiny(from: CGPoint(x: 0, y: 0))
+        centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+        centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        centerXConstraint.constant = destinyPoint.x
+        centerYConstraint.constant = destinyPoint.y
+        
+        NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
+    }
+    
+    func deactivateConstraintsIfNeeded() {
         if centerXConstraint != nil {
             centerXConstraint.isActive = false
             centerYConstraint.isActive = false
