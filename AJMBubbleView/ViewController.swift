@@ -31,12 +31,12 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var ajmView: AJMView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         originalConstraint = widthConstraint.constant
         print("Frame \(ajmView.frame)")
         // Do any additional setup after loading the view, typically from a nib.
-    }
 
     @IBAction func dragging(_ sender: UIPanGestureRecognizer) {
      //   print("Moving!")
@@ -45,6 +45,13 @@ class ViewController: UIViewController {
             centerXConstraint.isActive = false
             centerYConstraint.isActive = false
         }
+    }
+    
+    @IBAction func dragging(_ sender: UIPanGestureRecognizer) {
+        
+        deactivateConstraintsIfNeeded()
+        
+        // Drag view
         let translation = sender.translation(in: self.view)
         ajmView.center = CGPoint(x: ajmView.center.x + translation.x, y: ajmView.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: self.view)
@@ -53,16 +60,16 @@ class ViewController: UIViewController {
             
         case .ended:
             print("Los trait collection son:  \(self.traitCollection.horizontalSizeClass.rawValue), \(self.traitCollection.verticalSizeClass.rawValue)")
-
             print("Las coordenadas son:  \(ajmView.center)")
+            
             let point = ajmView.center
-            let cuadrantPoint = printQuadrant(point: point)
+            let destinyPoint = calculateDestiny(from: point)
             
             centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
             centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
-            centerXConstraint.constant = cuadrantPoint.x
-            centerYConstraint.constant = cuadrantPoint.y
-            NSLayoutConstraint.activate([centerXConstraint, centerYConstraint ])
+            centerXConstraint.constant = destinyPoint.x
+            centerYConstraint.constant = destinyPoint.y
+            NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
             
             UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
@@ -76,40 +83,32 @@ class ViewController: UIViewController {
         
     }
     
-    func printQuadrant(point : CGPoint) -> CGPoint {
+    func calculateDestiny(from point: CGPoint) -> CGPoint {
        
-        let x = self.view.bounds.width / 6
-        let y = self.view.bounds.height / 5
+        let deltaX = self.view.bounds.width / 6
+        let deltaY = self.view.bounds.height / 5
+        
+        // Quadrant 1 (top left)
         if point.x >= 0 && point.x < self.view.bounds.width / 2 &&
            point.y >= 0 && point.y < self.view.bounds.height / 2 {
-            print("Cuadrante 1")
+            return CGPoint(x: -2 * deltaX, y: -2 * deltaY)
             
-            return CGPoint(x: -2 * x, y: -2 * y)
+        // Quadrant 2 (top right)
         } else if point.x >= self.view.bounds.width / 2 &&
             point.y <= self.view.bounds.height / 2 {
-            print("Cuadrante 2")
-            
-            let newX = 2 * self.view.bounds.width / 6
-            return CGPoint(x: newX, y: -2 * y)
+            return CGPoint(x: 2 * deltaX, y: -2 * deltaY)
 
-
+        // Quadrant 3 (bottom left)
         } else if point.x >= 0 && point.x < self.view.bounds.width / 2 &&
             point.y >= self.view.bounds.height / 2 {
-            print("Cuadrante 3")
+            return CGPoint(x: -2 * deltaX, y: 2 * deltaY)
             
-            return CGPoint(x: -2 * x, y: 2 * y)
-            
-            
+        // Quadrant 4 (bottom right)
         } else if point.x >= self.view.bounds.width / 2 &&
             point.y >= self.view.bounds.height / 2 {
-            print("Cuadrante 4")
-            let newX = 2 * self.view.bounds.width / 6
-
-            return CGPoint(x: newX, y: 2 * y)
+            return CGPoint(x: 2 * deltaX, y: 2 * deltaY)
         }
         return CGPoint.zero
-
-        
     }
     
     @IBAction func growView(_ sender: Any) {
