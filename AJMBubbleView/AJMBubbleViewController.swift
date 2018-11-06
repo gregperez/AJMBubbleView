@@ -35,6 +35,7 @@ enum AnchorPoint {
 class AJMBubbleViewController: UIViewController {
 
     weak var delegate : AJMBubbleViewControllerDelegate?
+    var eraseCompletion : ((Bool) -> Void)?
     @IBOutlet weak var ajmBadge: UIView!
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint! {
@@ -63,13 +64,29 @@ class AJMBubbleViewController: UIViewController {
     
     @IBOutlet weak var ajmView: AJMView!
     
+    lazy var eraseZone : UIView = {
+        return UIView(frame: CGRect.zero)
+    }()
+    
+    var eraseBottomConstraint : NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Frame \(ajmView.frame)")
         view = ajmView
         ajmView.layer.cornerRadius = view.frame.width / 2
         ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
-       // placeTopLeft()
+        
+        guard let aView = delegate?.sourceView(for: self) else { return }
+       
+        aView.addSubview(eraseZone)
+        eraseZone.translatesAutoresizingMaskIntoConstraints = false
+        eraseZone.backgroundColor = UIColor.red
+        eraseZone.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        eraseZone.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        eraseBottomConstraint = eraseZone.bottomAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.bottomAnchor, constant: 25)
+        eraseBottomConstraint.isActive = true
+        eraseZone.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
     }
 
     func place(on anchorPoint : AnchorPoint) {
