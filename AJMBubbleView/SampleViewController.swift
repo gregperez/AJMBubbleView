@@ -24,16 +24,21 @@ class SampleViewController: UIViewController {
         counter = counter + 1
        
         guard bubbleVC == nil else { return }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let bubble = storyboard.instantiateViewController(withIdentifier: "BubbleVC") as? AJMBubbleViewController {
-            bubble.delegate = self
-            addChild(bubble)
-            view.addSubview(bubble.view)
-            bubble.didMove(toParent: self)
-            bubble.place(on: .bottomRight)
-            self.bubbleVC = bubble
-        }
+        let bubble = AJMBubbleViewController()
+        bubble.delegate = self
+        let bubbleView = bubble.view!
         
+        // Define the size of the bubble
+        bubbleView.translatesAutoresizingMaskIntoConstraints = false
+        bubbleView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        bubbleView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        addChild(bubble)
+        view.addSubview(bubbleView)
+        bubble.didMove(toParent: self)
+        bubble.place(on: .bottomRight)
+        self.bubbleVC = bubble
+
     }
     
 }
