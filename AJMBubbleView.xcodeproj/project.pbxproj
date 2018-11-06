@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		602C7B53218F46F50024AB7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C7B52218F46F50024AB7E /* AppDelegate.swift */; };
-		602C7B55218F46F50024AB7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C7B54218F46F50024AB7E /* ViewController.swift */; };
+		602C7B55218F46F50024AB7E /* AJMBubbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C7B54218F46F50024AB7E /* AJMBubbleViewController.swift */; };
 		602C7B58218F46F50024AB7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602C7B56218F46F50024AB7E /* Main.storyboard */; };
 		602C7B5A218F46F60024AB7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602C7B59218F46F60024AB7E /* Assets.xcassets */; };
 		602C7B5D218F46F70024AB7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602C7B5B218F46F70024AB7E /* LaunchScreen.storyboard */; };
 		602C7B65218F48170024AB7E /* AJMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C7B64218F48170024AB7E /* AJMView.swift */; };
+		60F19D9D219099D0006A1854 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F19D9C219099D0006A1854 /* SampleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		602C7B4F218F46F50024AB7E /* AJMBubbleView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AJMBubbleView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602C7B52218F46F50024AB7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		602C7B54218F46F50024AB7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		602C7B54218F46F50024AB7E /* AJMBubbleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AJMBubbleViewController.swift; sourceTree = "<group>"; };
 		602C7B57218F46F50024AB7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		602C7B59218F46F60024AB7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		602C7B5C218F46F70024AB7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		602C7B5E218F46F70024AB7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		602C7B64218F48170024AB7E /* AJMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AJMView.swift; sourceTree = "<group>"; };
+		60F19D9C219099D0006A1854 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				602C7B64218F48170024AB7E /* AJMView.swift */,
 				602C7B52218F46F50024AB7E /* AppDelegate.swift */,
-				602C7B54218F46F50024AB7E /* ViewController.swift */,
+				602C7B54218F46F50024AB7E /* AJMBubbleViewController.swift */,
 				602C7B56218F46F50024AB7E /* Main.storyboard */,
 				602C7B59218F46F60024AB7E /* Assets.xcassets */,
 				602C7B5B218F46F70024AB7E /* LaunchScreen.storyboard */,
 				602C7B5E218F46F70024AB7E /* Info.plist */,
+				60F19D9C219099D0006A1854 /* SampleViewController.swift */,
 			);
 			path = AJMBubbleView;
 			sourceTree = "<group>";
@@ -138,8 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				602C7B55218F46F50024AB7E /* ViewController.swift in Sources */,
+				602C7B55218F46F50024AB7E /* AJMBubbleViewController.swift in Sources */,
 				602C7B65218F48170024AB7E /* AJMView.swift in Sources */,
+				60F19D9D219099D0006A1854 /* SampleViewController.swift in Sources */,
 				602C7B53218F46F50024AB7E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
