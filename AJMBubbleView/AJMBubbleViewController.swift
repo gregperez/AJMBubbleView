@@ -65,19 +65,22 @@ class AJMBubbleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        originalConstraint = widthConstraint.constant
         print("Frame \(ajmView.frame)")
-       
-        placeTopLeft()
+        view = ajmView
+        ajmView.layer.cornerRadius = view.frame.width / 2
+        ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
+       // placeTopLeft()
     }
 
-    func placeTopLeft() {
+    func place(on anchorPoint : AnchorPoint) {
         
+        guard let aView = delegate?.sourceView(for: self) else { return }
+
         deactivateConstraintsIfNeeded()
         
-        let destinyPoint = calculateDestiny(from: CGPoint(x: 0, y: 0))
-        centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
-        centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        let destinyPoint = calculateDestiny(from: anchorPoint.rawValue)
+        centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerXAnchor)
+        centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerYAnchor)
         centerXConstraint.constant = destinyPoint.x
         centerYConstraint.constant = destinyPoint.y
         
