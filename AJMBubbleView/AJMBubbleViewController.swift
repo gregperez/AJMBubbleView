@@ -93,24 +93,35 @@ class AJMBubbleViewController: UIViewController {
         eraseBottomConstraint.isActive = true
         eraseZone.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareUI()
+    }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        ajmView.layer.cornerRadius = ajmView.frame.width / 2
+        ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
+    }
+    
     func place(on anchorPoint : AnchorPoint) {
         deactivateConstraintsIfNeeded()
         stickBubbleWith(position: anchorPoint.rawValue, animated: false)
     }
     
-    func deactivateConstraintsIfNeeded() {
+    private func deactivateConstraintsIfNeeded() {
         if centerXConstraint != nil {
             centerXConstraint.isActive = false
             centerYConstraint.isActive = false
         }
     }
     
-    func deleteBubble() {
+    private func deleteBubble() {
         guard let aView = delegate?.sourceView(for: self) else { return }
 
         eraseZone.backgroundColor = UIColor.brown
-        widthConstraint.constant = 1
+        bubbleWidthConstraint.constant = 1
         eraseBottomConstraint.constant = 200
         ajmView.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
         ajmView.bottomAnchor.constraint(equalTo: aView.bottomAnchor, constant: 100).isActive = true
@@ -145,7 +156,7 @@ class AJMBubbleViewController: UIViewController {
         
     }
     
-    @IBAction func dragging(_ sender: UIPanGestureRecognizer) {
+    @objc func dragging(_ sender: UIPanGestureRecognizer) {
         
         guard let aView = delegate?.sourceView(for: self) else { return }
         deactivateConstraintsIfNeeded()
@@ -185,8 +196,7 @@ class AJMBubbleViewController: UIViewController {
         
     }
     
-    func calculateDestiny(from aPoint: CGPoint) -> CGPoint {
-       
+    private func calculateDestiny(from aPoint: CGPoint) -> CGPoint {
         let point = CGPoint(x: abs(aPoint.x), y: abs(aPoint.y))
 
         guard let aView = delegate?.sourceView(for: self) else {
@@ -220,7 +230,6 @@ class AJMBubbleViewController: UIViewController {
         return CGPoint.zero
     }
     
-
     
 }
 
