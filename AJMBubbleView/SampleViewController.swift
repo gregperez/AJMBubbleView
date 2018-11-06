@@ -13,22 +13,36 @@ class SampleViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var actionButton: NSLayoutConstraint!
     var counter = 0
-   
+    var bubbleVC : AJMBubbleViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let bubbleVC = storyboard.instantiateViewController(withIdentifier: "BubbleVC") as! AJMBubbleViewController
-        bubbleVC.delegate = self
-        addChild(bubbleVC)
-        view.addSubview(bubbleVC.view)
-        bubbleVC.didMove(toParent: self)
-        bubbleVC.place(on: .bottomRight)
+       
     }
 
     @IBAction func updateLabel(_ sender: Any) {
         titleLabel.text = "\(counter)"
         counter = counter + 1
+       
+        guard bubbleVC == nil else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let bubble = storyboard.instantiateViewController(withIdentifier: "BubbleVC") as? AJMBubbleViewController {
+            
+            bubble.delegate = self
+            addChild(bubble)
+            view.addSubview(bubble.view)
+            bubble.didMove(toParent: self)
+            bubble.place(on: .bottomRight)
+            self.bubbleVC = bubble
+            bubble.eraseCompletion = { [weak self] status in
+                self?.bubbleVC?.willMove(toParent: nil)
+                self?.bubbleVC?.view.removeFromSuperview()
+                self?.bubbleVC?.removeFromParent()
+                self?.bubbleVC = nil
+            }
+        }
+        
     }
     
 }
