@@ -8,16 +8,47 @@
 
 import UIKit
 
-class BubbleViewController: UIViewController {
+protocol AJMBubbleViewControllerDelegate : class {
+    func sourceView(for bubbleController :  AJMBubbleViewController) -> UIView?
+}
 
+enum AnchorPoint {
+    case topLeft
+    case topRight
+    case bottomLeft
+    case bottomRight
+    
+    var rawValue : CGPoint {
+        switch self {
+            case .topLeft:
+                return CGPoint(x: CGFloat.leastNormalMagnitude, y: CGFloat.leastNormalMagnitude)
+            case .topRight:
+                return CGPoint(x: CGFloat.greatestFiniteMagnitude, y: CGFloat.leastNormalMagnitude)
+            case .bottomLeft:
+                return CGPoint(x: CGFloat.leastNormalMagnitude, y: CGFloat.greatestFiniteMagnitude)
+            case .bottomRight:
+                return CGPoint(x: CGFloat.greatestFiniteMagnitude, y: CGFloat.greatestFiniteMagnitude)
+        }
+    }
+}
+
+class AJMBubbleViewController: UIViewController {
+
+    weak var delegate : AJMBubbleViewControllerDelegate?
+    @IBOutlet weak var ajmBadge: UIView!
+    
     @IBOutlet weak var widthConstraint: NSLayoutConstraint! {
         didSet {
+            // debugging purposes
             widthConstraint.identifier = "AJM Width Constraint"
         }
     }
+    
     var originalConstraint : CGFloat = 0
+    
     @IBOutlet weak var centerXConstraint: NSLayoutConstraint! {
         didSet {
+            // debugging purposes
             centerXConstraint.identifier = "AJM Center X Constraint"
 
         }
