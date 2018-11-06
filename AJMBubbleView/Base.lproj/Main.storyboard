@@ -61,21 +61,19 @@
                                 <rect key="frame" x="15" y="15" width="60" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-0S-tBk">
-                                        <rect key="frame" x="40" y="-5" width="25" height="25"/>
+                                        <rect key="frame" x="41" y="-5" width="24" height="24"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="b6J-0f-03g"/>
-                                            <constraint firstAttribute="width" constant="25" id="dJ4-n9-oXN"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="hOe-0S-tBk" firstAttribute="height" secondItem="cRz-Nv-p93" secondAttribute="height" multiplier="0.4" id="5JZ-YS-iPI"/>
                                     <constraint firstAttribute="trailing" secondItem="hOe-0S-tBk" secondAttribute="trailing" constant="-5" id="SSs-N5-5fo"/>
-                                    <constraint firstAttribute="height" constant="60" id="Upp-aR-S2t"/>
                                     <constraint firstAttribute="width" constant="60" id="Xn7-HO-BWg"/>
                                     <constraint firstItem="hOe-0S-tBk" firstAttribute="top" secondItem="cRz-Nv-p93" secondAttribute="top" constant="-5" id="eEz-aq-pGP"/>
+                                    <constraint firstAttribute="width" secondItem="cRz-Nv-p93" secondAttribute="height" multiplier="1:1" id="pYW-rr-xIk"/>
+                                    <constraint firstItem="hOe-0S-tBk" firstAttribute="width" secondItem="cRz-Nv-p93" secondAttribute="width" multiplier="0.4" id="q51-fp-FE1"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="AMV-9o-bAG" appends="YES" id="DdQ-Nd-xsD"/>
@@ -93,6 +91,7 @@
                     <connections>
                         <outlet property="ajmBadge" destination="hOe-0S-tBk" id="RuH-xf-q2f"/>
                         <outlet property="ajmView" destination="cRz-Nv-p93" id="eqi-s1-j1Z"/>
+                        <outlet property="widthConstraint" destination="Xn7-HO-BWg" id="Fer-QA-F4l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
