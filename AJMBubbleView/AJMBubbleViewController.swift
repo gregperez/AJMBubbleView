@@ -124,45 +124,17 @@ class AJMBubbleViewController: UIViewController {
         
         switch sender.state {
             
-            
             case .ended:
-                
                 let point = ajmView.center
                 let isInEraseZone = eraseZone.frame.contains(point)
                 if isInEraseZone {
-                    eraseZone.backgroundColor = UIColor.brown
-                    print("ESTA EN ERASE ZONE")
-                    widthConstraint.constant = 1
-                    eraseBottomConstraint.constant = 100
-                    ajmView.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
-                    ajmView.bottomAnchor.constraint(equalTo: aView.bottomAnchor, constant: 100).isActive = true
- 
-                    UIView.animate(withDuration: 0.3, animations: {
-                        aView.layoutIfNeeded()
-                    }, completion: { [weak self](status) in
-                        if status {
-                            self?.eraseZone.removeFromSuperview()
-                            self?.eraseCompletion?(true)
-                        }
-                       
-                    })
+                    deleteBubble()
                     return
                 } else {
                     eraseZone.backgroundColor = UIColor.red
                 }
+                stickBubbleWith(position: point)
                 
-                let destinyPoint = calculateDestiny(from: point)
-                
-                centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerXAnchor)
-                centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerYAnchor)
-                centerXConstraint.constant = destinyPoint.x
-                centerYConstraint.constant = destinyPoint.y
-                NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
-                
-                UIView.animate(withDuration: 0.3, animations: {
-                    aView.layoutIfNeeded()
-                })
-            
             break
             
             default:
