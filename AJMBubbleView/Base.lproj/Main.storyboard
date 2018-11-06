@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qmL-pZ-BEp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,66 +9,90 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Sample View Controller-->
+        <scene sceneID="XOF-Kx-3ZO">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ConstraintSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="qmL-pZ-BEp" customClass="SampleViewController" customModule="AJMBubbleView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ReO-4w-DYC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOo-60-rgm">
-                                <rect key="frame" x="16" y="600" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Grow animate Width Constraint">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iup-B5-HvC">
+                                <rect key="frame" x="166.5" y="281" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1M-Mi-qpc">
+                                <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="growView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="91R-D9-hsW"/>
+                                    <action selector="updateLabel:" destination="qmL-pZ-BEp" eventType="touchUpInside" id="I9y-8d-cPa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCL-Tp-hwp">
-                                <rect key="frame" x="16" y="547" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Grow no animate">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="growNoAnimate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yqg-Aj-Pnu"/>
-                                    <action selector="growView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FIL-PJ-JLT"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRz-Nv-p93" customClass="AJMView" customModule="ConstraintSample" customModuleProvider="target">
-                                <rect key="frame" x="141" y="291.5" width="93" height="84"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="S1M-Mi-qpc" firstAttribute="centerY" secondItem="ReO-4w-DYC" secondAttribute="centerY" id="9Qy-d5-i2M"/>
+                            <constraint firstItem="Iup-B5-HvC" firstAttribute="centerX" secondItem="Xwe-BT-YZE" secondAttribute="centerX" id="PIA-W1-oox"/>
+                            <constraint firstItem="S1M-Mi-qpc" firstAttribute="top" secondItem="Iup-B5-HvC" secondAttribute="bottom" constant="16.5" id="Pao-MO-UEx"/>
+                            <constraint firstItem="S1M-Mi-qpc" firstAttribute="centerX" secondItem="ReO-4w-DYC" secondAttribute="centerX" id="kQu-7u-kPP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xwe-BT-YZE"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="9Qy-d5-i2M" id="hGj-N4-90r"/>
+                        <outlet property="titleLabel" destination="Iup-B5-HvC" id="C5W-ni-sDd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ioi-Z9-p1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-46" y="-2"/>
+        </scene>
+        <!--Bubble View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="BubbleVC" id="BYZ-38-t0r" customClass="AJMBubbleViewController" customModule="AJMBubbleView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRz-Nv-p93" customClass="AJMView" customModule="AJMBubbleView" customModuleProvider="target">
+                                <rect key="frame" x="15" y="15" width="60" height="60"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-0S-tBk">
+                                        <rect key="frame" x="40" y="-5" width="25" height="25"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="b6J-0f-03g"/>
+                                            <constraint firstAttribute="width" constant="25" id="dJ4-n9-oXN"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="Zob-DO-eiz"/>
-                                    <constraint firstAttribute="width" secondItem="cRz-Nv-p93" secondAttribute="height" multiplier="31:28" id="m9R-hU-Iuq"/>
+                                    <constraint firstAttribute="trailing" secondItem="hOe-0S-tBk" secondAttribute="trailing" constant="-5" id="SSs-N5-5fo"/>
+                                    <constraint firstAttribute="height" constant="60" id="Upp-aR-S2t"/>
+                                    <constraint firstAttribute="width" constant="60" id="Xn7-HO-BWg"/>
+                                    <constraint firstItem="hOe-0S-tBk" firstAttribute="top" secondItem="cRz-Nv-p93" secondAttribute="top" constant="-5" id="eEz-aq-pGP"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="AMV-9o-bAG" appends="YES" id="DdQ-Nd-xsD"/>
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cRz-Nv-p93" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8x0-Vj-87T"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LOo-60-rgm" secondAttribute="bottom" constant="37" id="LGe-Ik-Mzs"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LOo-60-rgm" secondAttribute="trailing" constant="16" id="Lij-F1-f2c"/>
-                            <constraint firstItem="LOo-60-rgm" firstAttribute="top" secondItem="HCL-Tp-hwp" secondAttribute="bottom" constant="23" id="ikh-Ad-OAH"/>
-                            <constraint firstItem="HCL-Tp-hwp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nDC-ti-2xj"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HCL-Tp-hwp" secondAttribute="trailing" constant="16" id="p4c-YS-fi1"/>
-                            <constraint firstItem="cRz-Nv-p93" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sM2-HZ-L5Q"/>
-                            <constraint firstItem="LOo-60-rgm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yGt-ZT-9fX"/>
+                            <constraint firstItem="cRz-Nv-p93" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="BgX-K5-bj4"/>
+                            <constraint firstItem="cRz-Nv-p93" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lgy-dm-754"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="90" height="90"/>
                     <connections>
+                        <outlet property="ajmBadge" destination="hOe-0S-tBk" id="RuH-xf-q2f"/>
                         <outlet property="ajmView" destination="cRz-Nv-p93" id="eqi-s1-j1Z"/>
-                        <outlet property="centerXConstraint" destination="8x0-Vj-87T" id="KiQ-YB-Hiq"/>
-                        <outlet property="centerYConstraint" destination="sM2-HZ-L5Q" id="T2N-0b-14c"/>
-                        <outlet property="widthConstraint" destination="Zob-DO-eiz" id="2Od-XJ-T65"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -78,7 +102,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="140" y="132.68365817091455"/>
+            <point key="canvasLocation" x="712" y="-23.388305847076463"/>
         </scene>
     </scenes>
 </document>
