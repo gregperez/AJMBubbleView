@@ -16,9 +16,7 @@ class SampleViewController: UIViewController {
     var bubbleVC : AJMBubbleViewController?
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-       
+        super.viewDidLoad()  
     }
 
     @IBAction func updateLabel(_ sender: Any) {
@@ -28,19 +26,12 @@ class SampleViewController: UIViewController {
         guard bubbleVC == nil else { return }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let bubble = storyboard.instantiateViewController(withIdentifier: "BubbleVC") as? AJMBubbleViewController {
-            
             bubble.delegate = self
             addChild(bubble)
             view.addSubview(bubble.view)
             bubble.didMove(toParent: self)
             bubble.place(on: .bottomRight)
             self.bubbleVC = bubble
-            bubble.eraseCompletion = { [weak self] status in
-                self?.bubbleVC?.willMove(toParent: nil)
-                self?.bubbleVC?.view.removeFromSuperview()
-                self?.bubbleVC?.removeFromParent()
-                self?.bubbleVC = nil
-            }
         }
         
     }
