@@ -52,4 +52,11 @@ extension SampleViewController : AJMBubbleViewControllerDelegate {
     func sourceView(for bubbleController: AJMBubbleViewController) -> UIView? {
         return view!
     }
+    
+    func ajmBubbleViewController(sender: AJMBubbleViewController, didDeleteView flag: Bool) {
+        self.bubbleVC?.willMove(toParent: nil)
+        self.bubbleVC?.view.removeFromSuperview()
+        self.bubbleVC?.removeFromParent()
+        self.bubbleVC = nil
+    }
 }
