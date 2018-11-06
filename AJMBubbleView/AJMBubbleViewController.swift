@@ -123,8 +123,33 @@ class AJMBubbleViewController: UIViewController {
         
         switch sender.state {
             
+            
             case .ended:
+                
                 let point = ajmView.center
+                let isInEraseZone = eraseZone.frame.contains(point)
+                if isInEraseZone {
+                    eraseZone.backgroundColor = UIColor.brown
+                    print("ESTA EN ERASE ZONE")
+                    widthConstraint.constant = 1
+                    eraseBottomConstraint.constant = 100
+                    ajmView.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
+                    ajmView.bottomAnchor.constraint(equalTo: aView.bottomAnchor, constant: 100).isActive = true
+ 
+                    UIView.animate(withDuration: 0.3, animations: {
+                        aView.layoutIfNeeded()
+                    }, completion: { [weak self](status) in
+                        if status {
+                            self?.eraseZone.removeFromSuperview()
+                            self?.eraseCompletion?(true)
+                        }
+                       
+                    })
+                    return
+                } else {
+                    eraseZone.backgroundColor = UIColor.red
+                }
+                
                 let destinyPoint = calculateDestiny(from: point)
                 
                 centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerXAnchor)
@@ -140,6 +165,16 @@ class AJMBubbleViewController: UIViewController {
             break
             
             default:
+                let point = ajmView.center
+                let isInEraseZone = eraseZone.frame.contains(point)
+                if isInEraseZone {
+                    eraseZone.backgroundColor = UIColor.brown
+                    print("ESTA EN ERASE ZONE")
+                } else {
+                    eraseZone.backgroundColor = UIColor.red
+                }
+                
+                
             break
         }
         
