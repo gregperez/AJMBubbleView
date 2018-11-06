@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BubbleViewController: UIViewController {
 
     @IBOutlet weak var widthConstraint: NSLayoutConstraint! {
         didSet {
