@@ -93,124 +93,74 @@ class AJMBubbleViewController: UIViewController {
     
     @IBAction func dragging(_ sender: UIPanGestureRecognizer) {
         
+        guard let aView = delegate?.sourceView(for: self) else { return }
         deactivateConstraintsIfNeeded()
         
         // Drag view
-        let translation = sender.translation(in: self.view)
+        let translation = sender.translation(in: aView)
         ajmView.center = CGPoint(x: ajmView.center.x + translation.x, y: ajmView.center.y + translation.y)
-        sender.setTranslation(CGPoint.zero, in: self.view)
+        sender.setTranslation(CGPoint.zero, in: aView)
         
         switch sender.state {
             
-        case .ended:
-            print("Los trait collection son:  \(self.traitCollection.horizontalSizeClass.rawValue), \(self.traitCollection.verticalSizeClass.rawValue)")
-            print("Las coordenadas son:  \(ajmView.center)")
-            
-            let point = ajmView.center
-            let destinyPoint = calculateDestiny(from: point)
-            
-            centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
-            centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
-            centerXConstraint.constant = destinyPoint.x
-            centerYConstraint.constant = destinyPoint.y
-            NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
-            
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            })
+            case .ended:
+                let point = ajmView.center
+                let destinyPoint = calculateDestiny(from: point)
+                
+                centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerXAnchor)
+                centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerYAnchor)
+                centerXConstraint.constant = destinyPoint.x
+                centerYConstraint.constant = destinyPoint.y
+                NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
+                
+                UIView.animate(withDuration: 0.3, animations: {
+                    aView.layoutIfNeeded()
+                })
             
             break
             
-        default:
+            default:
             break
         }
         
     }
     
-    func calculateDestiny(from point: CGPoint) -> CGPoint {
+    func calculateDestiny(from aPoint: CGPoint) -> CGPoint {
        
-        let deltaX = self.view.bounds.width / 6
-        let deltaY = self.view.bounds.height / 5
+        let point = CGPoint(x: abs(aPoint.x), y: abs(aPoint.y))
+
+        guard let aView = delegate?.sourceView(for: self) else {
+            return CGPoint.zero
+            
+        }
+        
+        let deltaX = aView.bounds.width / 6
+        let deltaY = aView.bounds.height / 5
         
         // Quadrant 1 (top left)
-        if point.x >= 0 && point.x < self.view.bounds.width / 2 &&
-           point.y >= 0 && point.y < self.view.bounds.height / 2 {
+        if point.x >= 0 && point.x < aView.bounds.width / 2 &&
+           point.y >= 0 && point.y < aView.bounds.height / 2 {
             return CGPoint(x: -2 * deltaX, y: -2 * deltaY)
             
         // Quadrant 2 (top right)
-        } else if point.x >= self.view.bounds.width / 2 &&
-            point.y <= self.view.bounds.height / 2 {
+        } else if point.x >= aView.bounds.width / 2 &&
+            point.y <= aView.bounds.height / 2 {
             return CGPoint(x: 2 * deltaX, y: -2 * deltaY)
 
         // Quadrant 3 (bottom left)
-        } else if point.x >= 0 && point.x < self.view.bounds.width / 2 &&
-            point.y >= self.view.bounds.height / 2 {
+        } else if point.x >= 0 && point.x < aView.bounds.width / 2 &&
+            point.y >= aView.bounds.height / 2 {
             return CGPoint(x: -2 * deltaX, y: 2 * deltaY)
             
         // Quadrant 4 (bottom right)
-        } else if point.x >= self.view.bounds.width / 2 &&
-            point.y >= self.view.bounds.height / 2 {
+        } else if point.x >= aView.bounds.width / 2 &&
+            point.y >= aView.bounds.height / 2 {
             return CGPoint(x: 2 * deltaX, y: 2 * deltaY)
         }
         return CGPoint.zero
     }
     
-    @IBAction func growView(_ sender: Any) {
-        print("grow animate width constraint Button Tapped")
-        self.widthConstraint.constant = self.widthConstraint.constant * 1.3
-       
-        UIView.animate(withDuration: 2.0, animations: {
-             self.view.layoutIfNeeded()
-        }, completion: { (status) in
-            if status {
-                print("Terminando la animación ")
-                self.ajmView.setNeedsDisplay()
-            }
-        })
-    }
-    
-    @IBAction func growNoAnimate(_ sender: Any) {
-        print("Grow no animate Button Tapped")
-        widthConstraint.constant = originalConstraint
-    }
-    
-    
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print("viewWillLayoutSubviews")
-        print("Frame \(ajmView.frame)")
 
-        
-    }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews")
-        print("Frame \(ajmView.frame)")
-
-    }
-    
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        print("updateViewConstraints")
-        print("Frame \(ajmView.frame)")
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewWillAppear")
-        print("Frame \(ajmView.frame)")
-
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("viewDidAppear")
-        print("Frame \(ajmView.frame)")
-
-    }
 }
 
