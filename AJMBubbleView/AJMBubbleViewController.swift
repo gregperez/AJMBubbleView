@@ -91,18 +91,8 @@ class AJMBubbleViewController: UIViewController {
     }
 
     func place(on anchorPoint : AnchorPoint) {
-        
-        guard let aView = delegate?.sourceView(for: self) else { return }
-
         deactivateConstraintsIfNeeded()
-        
-        let destinyPoint = calculateDestiny(from: anchorPoint.rawValue)
-        centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerXAnchor)
-        centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerYAnchor)
-        centerXConstraint.constant = destinyPoint.x
-        centerYConstraint.constant = destinyPoint.y
-        
-        NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
+        stickBubbleWith(position: anchorPoint.rawValue, animated: false)
     }
     
     func deactivateConstraintsIfNeeded() {
@@ -110,6 +100,45 @@ class AJMBubbleViewController: UIViewController {
             centerXConstraint.isActive = false
             centerYConstraint.isActive = false
         }
+    }
+    
+    func deleteBubble() {
+        guard let aView = delegate?.sourceView(for: self) else { return }
+
+        eraseZone.backgroundColor = UIColor.brown
+        widthConstraint.constant = 1
+        eraseBottomConstraint.constant = 200
+        ajmView.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
+        ajmView.bottomAnchor.constraint(equalTo: aView.bottomAnchor, constant: 100).isActive = true
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            aView.layoutIfNeeded()
+        }, completion: { [weak self](status) in
+            guard let strongSelf = self else { return }
+            strongSelf.eraseZone.removeFromSuperview()
+            strongSelf.delegate?.ajmBubbleViewController(sender: strongSelf, didDeleteView: true)
+        })
+        
+    }
+    
+    private func stickBubbleWith(position : CGPoint, animated : Bool = true) {
+        
+        guard let aView = delegate?.sourceView(for: self) else { return }
+
+        let destinyPoint = calculateDestiny(from: position)
+        
+        centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerXAnchor)
+        centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerYAnchor)
+        centerXConstraint.constant = destinyPoint.x
+        centerYConstraint.constant = destinyPoint.y
+        NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
+        
+        if animated {
+            UIView.animate(withDuration: 0.3, animations: {
+                aView.layoutIfNeeded()
+            })
+        }
+        
     }
     
     @IBAction func dragging(_ sender: UIPanGestureRecognizer) {
@@ -142,7 +171,6 @@ class AJMBubbleViewController: UIViewController {
                 let isInEraseZone = eraseZone.frame.contains(point)
                 if isInEraseZone {
                     eraseZone.backgroundColor = UIColor.brown
-                    print("ESTA EN ERASE ZONE")
                 } else {
                     eraseZone.backgroundColor = UIColor.red
                 }
