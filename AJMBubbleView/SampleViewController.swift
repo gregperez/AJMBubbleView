@@ -10,21 +10,32 @@ import UIKit
 
 class SampleViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var actionButton: NSLayoutConstraint!
+    var counter = 0
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let bubbleVC = storyboard.instantiateViewController(withIdentifier: "BubbleVC") as! AJMBubbleViewController
+        bubbleVC.delegate = self
+        addChild(bubbleVC)
+        view.addSubview(bubbleVC.view)
+        bubbleVC.didMove(toParent: self)
+        bubbleVC.place(on: .bottomRight)
+    }
 
-        // Do any additional setup after loading the view.
+    @IBAction func updateLabel(_ sender: Any) {
+        titleLabel.text = "\(counter)"
+        counter = counter + 1
     }
     
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension SampleViewController : AJMBubbleViewControllerDelegate {
+    
+    func sourceView(for bubbleController: AJMBubbleViewController) -> UIView? {
+        return view!
     }
-    */
-
 }
