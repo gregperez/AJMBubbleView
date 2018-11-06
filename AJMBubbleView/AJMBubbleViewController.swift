@@ -34,42 +34,46 @@ enum AnchorPoint {
 }
 
 class AJMBubbleViewController: UIViewController {
-
+    
     weak var delegate : AJMBubbleViewControllerDelegate?
-    var eraseCompletion : ((Bool) -> Void)?
-    @IBOutlet weak var ajmBadge: UIView!
+   
+    private var eraseBottomConstraint : NSLayoutConstraint!
+
+    private var bubbleWidthConstraint : NSLayoutConstraint! {
+        didSet {
+            bubbleWidthConstraint.identifier = "Bubble width constraint"
+        }
+    }
     
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint! {
+    private var centerXConstraint: NSLayoutConstraint! {
         didSet {
             // debugging purposes
-            widthConstraint.identifier = "AJM Width Constraint"
+            centerXConstraint.identifier = "Bubble center X Constraint"
         }
     }
     
-    var originalConstraint : CGFloat = 0
-    
-    @IBOutlet weak var centerXConstraint: NSLayoutConstraint! {
+    private var centerYConstraint: NSLayoutConstraint! {
         didSet {
-            // debugging purposes
-            centerXConstraint.identifier = "AJM Center X Constraint"
-
+            centerYConstraint.identifier = "Bubble center Y Constraint"
         }
     }
     
-    @IBOutlet weak var centerYConstraint: NSLayoutConstraint! {
-        didSet {
-            centerYConstraint.identifier = "AJM Center Y Constraint"
-
-        }
-    }
+    private lazy var ajmBadge: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.red
+        return view
+    }()
     
-    @IBOutlet weak var ajmView: AJMView!
+    private lazy var ajmView : AJMView = {
+        let view = AJMView()
+        view.backgroundColor = UIColor.green
+        return view
+    }()
     
-    lazy var eraseZone : UIView = {
+    private lazy var eraseZone : UIView = {
         return UIView(frame: CGRect.zero)
     }()
     
-    var eraseBottomConstraint : NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
