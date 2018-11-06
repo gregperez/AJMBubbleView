@@ -74,16 +74,40 @@ class AJMBubbleViewController: UIViewController {
         return UIView(frame: CGRect.zero)
     }()
     
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Frame \(ajmView.frame)")
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func prepareUI() {
+        view.backgroundColor = UIColor.blue
+        view.addSubview(ajmView)
+        ajmView.translatesAutoresizingMaskIntoConstraints = false
+        
+        centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        centerXConstraint.isActive = true
+        centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        centerYConstraint.isActive = true
         view = ajmView
-        ajmView.layer.cornerRadius = view.frame.width / 2
-        ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
+        bubbleWidthConstraint = view.widthAnchor.constraint(equalToConstant: 0)
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragging(_:)))
+        ajmView.addGestureRecognizer(panGesture)
+
+        view.addSubview(ajmBadge)
+        ajmBadge.translatesAutoresizingMaskIntoConstraints = false
+        ajmBadge.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35).isActive = true
+        ajmBadge.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
+        ajmBadge.topAnchor.constraint(equalTo: ajmView.topAnchor, constant: -6).isActive = true
+        ajmBadge.trailingAnchor.constraint(equalTo: ajmView.trailingAnchor, constant: 5).isActive = true
         
         guard let aView = delegate?.sourceView(for: self) else { return }
-       
+        
         aView.addSubview(eraseZone)
         eraseZone.translatesAutoresizingMaskIntoConstraints = false
         eraseZone.backgroundColor = UIColor.red
