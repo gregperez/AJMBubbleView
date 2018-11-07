@@ -125,17 +125,8 @@ class AJMBubbleViewController: UIViewController {
         guard let numberOfNotifications = delegate?.numberOfNotifications(sender: self) else {
             return
         }
+        ajmView.updateBadge(numberOfNotifications)
         
-        let hasNotifications = numberOfNotifications > 0
-
-        if let notifLabel = ajmBadge.subviews.last as? UILabel {
-            notifLabel.text = "\(numberOfNotifications)"
-        }
-        
-        UIView.animate(withDuration: 0.7, animations: { [weak self] in
-            self?.ajmBadge.isHidden = !hasNotifications
-        })
-    
     }
     
     private func deactivateConstraintsIfNeeded() {
