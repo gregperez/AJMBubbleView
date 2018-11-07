@@ -77,9 +77,10 @@ class AJMBubbleViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepareUI() {
+    private func prepareUI() {
         view.backgroundColor = UIColor.blue
         view.addSubview(ajmView)
+        ajmView.prepare(image: UIImage(named: "tomHardy")!)
         ajmView.translatesAutoresizingMaskIntoConstraints = false
         
         centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
@@ -111,8 +112,8 @@ class AJMBubbleViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        ajmView.layer.cornerRadius = ajmView.frame.width / 2
-        ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
+       // ajmView.layer.cornerRadius = ajmView.frame.width / 2
+      //  ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
     }
     
     func place(on anchorPoint : AnchorPoint) {
