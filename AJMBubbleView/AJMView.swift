@@ -34,6 +34,20 @@ class AJMView: UIView {
         return notificationLabel
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubviews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func prepare(image : UIImage) {
+        iconImageView.image = image
+        iconImageView.contentMode = .scaleAspectFill
+    }
+    
     func updateBadge(_ numberOfNotifications : Int) {
         
         let hasNotifications = numberOfNotifications > 0
