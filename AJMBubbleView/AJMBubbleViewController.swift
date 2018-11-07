@@ -99,21 +99,6 @@ class AJMBubbleViewController: UIViewController {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragging(_:)))
         ajmView.addGestureRecognizer(panGesture)
 
-        view.addSubview(ajmBadge)
-        ajmBadge.translatesAutoresizingMaskIntoConstraints = false
-        ajmBadge.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35).isActive = true
-        ajmBadge.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
-        ajmBadge.topAnchor.constraint(equalTo: ajmView.topAnchor, constant: -6).isActive = true
-        ajmBadge.trailingAnchor.constraint(equalTo: ajmView.trailingAnchor, constant: 5).isActive = true
-        
-        let notificationLabel = UILabel()
-        notificationLabel.textColor = UIColor.white
-        notificationLabel.translatesAutoresizingMaskIntoConstraints = false
-        ajmBadge.addSubview(notificationLabel)
-        notificationLabel.centerXAnchor.constraint(equalTo: ajmBadge.centerXAnchor).isActive = true
-        notificationLabel.centerYAnchor.constraint(equalTo: ajmBadge.centerYAnchor).isActive = true
-        ajmBadge.isHidden = true
-
         guard let aView = delegate?.sourceView(for: self) else { return }
         
         aView.addSubview(eraseZone)
