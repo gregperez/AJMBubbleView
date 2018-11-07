@@ -164,7 +164,12 @@ class AJMBubbleViewController: UIViewController {
         
         guard let aView = delegate?.sourceView(for: self) else { return }
 
-        let destinyPoint = calculateDestiny(from: position)
+        var destinyPoint : CGPoint = CGPoint.zero
+        if self.traitCollection.userInterfaceIdiom == .pad {
+            destinyPoint = calculateDestiny(from: position, factor : 2.5)
+        } else {
+            destinyPoint = calculateDestiny(from: position)
+        }
         
         centerXConstraint = ajmView.centerXAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerXAnchor)
         centerYConstraint = ajmView.centerYAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.centerYAnchor)
@@ -220,7 +225,7 @@ class AJMBubbleViewController: UIViewController {
         
     }
     
-    private func calculateDestiny(from aPoint: CGPoint) -> CGPoint {
+    private func calculateDestiny(from aPoint: CGPoint, factor : CGFloat = 2) -> CGPoint {
         let point = CGPoint(x: abs(aPoint.x), y: abs(aPoint.y))
 
         guard let aView = delegate?.sourceView(for: self) else {
@@ -234,26 +239,25 @@ class AJMBubbleViewController: UIViewController {
         // Quadrant 1 (top left)
         if point.x >= 0 && point.x < aView.bounds.width / 2 &&
            point.y >= 0 && point.y < aView.bounds.height / 2 {
-            return CGPoint(x: -2 * deltaX, y: -2 * deltaY)
+            return CGPoint(x: -factor * deltaX, y: -2 * deltaY)
             
         // Quadrant 2 (top right)
         } else if point.x >= aView.bounds.width / 2 &&
             point.y <= aView.bounds.height / 2 {
-            return CGPoint(x: 2 * deltaX, y: -2 * deltaY)
+            return CGPoint(x: factor * deltaX, y: -2 * deltaY)
 
         // Quadrant 3 (bottom left)
         } else if point.x >= 0 && point.x < aView.bounds.width / 2 &&
             point.y >= aView.bounds.height / 2 {
-            return CGPoint(x: -2 * deltaX, y: 2 * deltaY)
+            return CGPoint(x: -factor * deltaX, y: 2 * deltaY)
             
         // Quadrant 4 (bottom right)
         } else if point.x >= aView.bounds.width / 2 &&
             point.y >= aView.bounds.height / 2 {
-            return CGPoint(x: 2 * deltaX, y: 2 * deltaY)
+            return CGPoint(x: factor * deltaX, y: 2 * deltaY)
         }
         return CGPoint.zero
     }
-    
     
 }
 
