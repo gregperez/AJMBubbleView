@@ -9,10 +9,31 @@
 import UIKit
 
 class AJMView: UIView {
-   
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        print("layoutSubviews")
+    
+    var customConstraints : [NSLayoutConstraint]!
+    
+    private var iconImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "tomHardy")
+        return imageView
+    }()
+    
+    private lazy var ajmBadge: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.red
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var notificationLabel : UILabel = {
+        let notificationLabel = UILabel()
+        notificationLabel.textColor = UIColor.white
+        notificationLabel.translatesAutoresizingMaskIntoConstraints = false
+        return notificationLabel
+    }()
+    
     func updateBadge(_ numberOfNotifications : Int) {
         
         let hasNotifications = numberOfNotifications > 0
