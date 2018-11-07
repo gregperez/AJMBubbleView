@@ -38,9 +38,13 @@ class SampleViewController: UIViewController {
         bubble.didMove(toParent: self)
         bubble.place(on: .bottomRight)
         self.bubbleVC = bubble
+        
 
     }
     
+    @IBAction func createNotification(_ sender: Any) {
+        self.bubbleVC?.reloadBubble()
+    }
 }
 
 extension SampleViewController : AJMBubbleViewControllerDelegate {
