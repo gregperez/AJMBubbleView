@@ -59,15 +59,8 @@ class AJMBubbleViewController: UIViewController {
         }
     }
     
-    private lazy var ajmBadge: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.red
-        return view
-    }()
-    
     private lazy var ajmView : AJMView = {
         let view = AJMView()
-        view.backgroundColor = UIColor.green
         return view
     }()
     
