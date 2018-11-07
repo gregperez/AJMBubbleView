@@ -110,12 +110,6 @@ class AJMBubbleViewController: UIViewController {
         prepareUI()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-       // ajmView.layer.cornerRadius = ajmView.frame.width / 2
-      //  ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
-    }
-    
     func place(on anchorPoint : AnchorPoint) {
         deactivateConstraintsIfNeeded()
         stickBubbleWith(position: anchorPoint.rawValue, animated: false)
