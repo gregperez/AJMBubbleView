@@ -24,19 +24,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1M-Mi-qpc">
-                                <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="124" y="318.5" width="127" height="30"/>
+                                <state key="normal" title="Create bubble"/>
                                 <connections>
                                     <action selector="updateLabel:" destination="qmL-pZ-BEp" eventType="touchUpInside" id="I9y-8d-cPa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O73-IE-Nvk">
+                                <rect key="frame" x="124" y="356" width="127" height="30"/>
+                                <state key="normal" title="Create notification"/>
+                                <connections>
+                                    <action selector="createNotification:" destination="qmL-pZ-BEp" eventType="touchUpInside" id="3WQ-KM-6nZ"/>
+                                    <action selector="updateLabel:" destination="qmL-pZ-BEp" eventType="touchUpInside" id="8ND-Cc-79Y"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="S1M-Mi-qpc" firstAttribute="centerY" secondItem="ReO-4w-DYC" secondAttribute="centerY" id="9Qy-d5-i2M"/>
+                            <constraint firstItem="O73-IE-Nvk" firstAttribute="trailing" secondItem="S1M-Mi-qpc" secondAttribute="trailing" id="C5T-s9-axa"/>
                             <constraint firstItem="Iup-B5-HvC" firstAttribute="centerX" secondItem="Xwe-BT-YZE" secondAttribute="centerX" id="PIA-W1-oox"/>
                             <constraint firstItem="S1M-Mi-qpc" firstAttribute="top" secondItem="Iup-B5-HvC" secondAttribute="bottom" constant="16.5" id="Pao-MO-UEx"/>
                             <constraint firstItem="S1M-Mi-qpc" firstAttribute="centerX" secondItem="ReO-4w-DYC" secondAttribute="centerX" id="kQu-7u-kPP"/>
+                            <constraint firstItem="O73-IE-Nvk" firstAttribute="top" secondItem="S1M-Mi-qpc" secondAttribute="bottom" constant="7.5" id="mLW-1F-5cR"/>
+                            <constraint firstItem="O73-IE-Nvk" firstAttribute="leading" secondItem="S1M-Mi-qpc" secondAttribute="leading" id="z02-ob-zI6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xwe-BT-YZE"/>
                     </view>
