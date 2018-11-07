@@ -68,6 +68,11 @@ class AJMBubbleViewController: UIViewController {
         return UIView(frame: CGRect.zero)
     }()
     
+    var trashIsOpen = false {
+        didSet {
+            trashImageView.image = trashIsOpen ? UIImage(named: "trash-can-open") : UIImage(named: "trash-can-close")
+        }
+    }
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -190,10 +195,11 @@ class AJMBubbleViewController: UIViewController {
                 let point = ajmView.center
                 let isInEraseZone = eraseZone.frame.contains(point)
                 if isInEraseZone {
+                    trashIsOpen = true
                     deleteBubble()
                     return
                 } else {
-                    eraseZone.backgroundColor = UIColor.red
+                    trashIsOpen = false
                 }
                 stickBubbleWith(position: point)
                 
@@ -203,9 +209,9 @@ class AJMBubbleViewController: UIViewController {
                 let point = ajmView.center
                 let isInEraseZone = eraseZone.frame.contains(point)
                 if isInEraseZone {
-                    eraseZone.backgroundColor = UIColor.brown
+                    trashIsOpen = true
                 } else {
-                    eraseZone.backgroundColor = UIColor.red
+                    trashIsOpen = false
                 }
                 
                 
