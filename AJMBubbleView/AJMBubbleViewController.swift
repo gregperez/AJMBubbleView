@@ -110,7 +110,6 @@ class AJMBubbleViewController: UIViewController {
         
         aView.addSubview(eraseZone)
         eraseZone.translatesAutoresizingMaskIntoConstraints = false
-        eraseZone.backgroundColor = UIColor.red
         eraseZone.widthAnchor.constraint(equalToConstant: 100).isActive = true
         eraseZone.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
@@ -153,7 +152,6 @@ class AJMBubbleViewController: UIViewController {
     private func deleteBubble() {
         guard let aView = delegate?.sourceView(for: self) else { return }
 
-        eraseZone.backgroundColor = UIColor.brown
         bubbleWidthConstraint.constant = 1
         eraseBottomConstraint.constant = 200
         ajmView.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
