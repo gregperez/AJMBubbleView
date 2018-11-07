@@ -84,7 +84,6 @@ class AJMBubbleViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func prepareUI() {
         view.backgroundColor = UIColor.blue
         view.addSubview(ajmView)
@@ -107,6 +106,14 @@ class AJMBubbleViewController: UIViewController {
         ajmBadge.topAnchor.constraint(equalTo: ajmView.topAnchor, constant: -6).isActive = true
         ajmBadge.trailingAnchor.constraint(equalTo: ajmView.trailingAnchor, constant: 5).isActive = true
         
+        let notificationLabel = UILabel()
+        notificationLabel.textColor = UIColor.white
+        notificationLabel.translatesAutoresizingMaskIntoConstraints = false
+        ajmBadge.addSubview(notificationLabel)
+        notificationLabel.centerXAnchor.constraint(equalTo: ajmBadge.centerXAnchor).isActive = true
+        notificationLabel.centerYAnchor.constraint(equalTo: ajmBadge.centerYAnchor).isActive = true
+        ajmBadge.isHidden = true
+
         guard let aView = delegate?.sourceView(for: self) else { return }
         
         aView.addSubview(eraseZone)
