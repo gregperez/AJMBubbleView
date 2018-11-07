@@ -49,6 +49,10 @@ extension SampleViewController : AJMBubbleViewControllerDelegate {
         return view!
     }
     
+    func numberOfNotifications(sender: AJMBubbleViewController) -> Int? {
+        return 3
+    }
+    
     func ajmBubbleViewController(sender: AJMBubbleViewController, didDeleteView flag: Bool) {
         self.bubbleVC?.willMove(toParent: nil)
         self.bubbleVC?.view.removeFromSuperview()

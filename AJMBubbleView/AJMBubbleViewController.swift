@@ -11,6 +11,7 @@ import UIKit
 protocol AJMBubbleViewControllerDelegate : class {
     func sourceView(for bubbleController :  AJMBubbleViewController) -> UIView?
     func ajmBubbleViewController(sender : AJMBubbleViewController, didDeleteView flag : Bool)
+    func numberOfNotifications(sender : AJMBubbleViewController) -> Int?
 }
 
 enum AnchorPoint {
