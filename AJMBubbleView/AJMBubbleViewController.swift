@@ -68,6 +68,14 @@ class AJMBubbleViewController: UIViewController {
         return UIView(frame: CGRect.zero)
     }()
     
+    private lazy var trashImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "trash-can-close")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     var trashIsOpen = false {
         didSet {
             trashImageView.image = trashIsOpen ? UIImage(named: "trash-can-open") : UIImage(named: "trash-can-close")
@@ -105,6 +113,13 @@ class AJMBubbleViewController: UIViewController {
         eraseZone.backgroundColor = UIColor.red
         eraseZone.widthAnchor.constraint(equalToConstant: 100).isActive = true
         eraseZone.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        eraseZone.addSubview(trashImageView)
+        trashImageView.centerXAnchor.constraint(equalTo: eraseZone.centerXAnchor).isActive = true
+        trashImageView.topAnchor.constraint(equalTo: eraseZone.topAnchor, constant: 5).isActive = true
+        trashImageView.widthAnchor.constraint(equalTo: eraseZone.widthAnchor, multiplier: 0.5).isActive = true
+        trashImageView.heightAnchor.constraint(equalTo: eraseZone.heightAnchor, multiplier: 0.5).isActive = true
+
         eraseBottomConstraint = eraseZone.bottomAnchor.constraint(equalTo: aView.safeAreaLayoutGuide.bottomAnchor, constant: 25)
         eraseBottomConstraint.isActive = true
         eraseZone.centerXAnchor.constraint(equalTo: aView.centerXAnchor, constant: 0).isActive = true
