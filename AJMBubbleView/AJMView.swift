@@ -13,7 +13,28 @@ class AJMView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         print("layoutSubviews")
+    func updateBadge(_ numberOfNotifications : Int) {
         
+        let hasNotifications = numberOfNotifications > 0
+        notificationLabel.text = "\(numberOfNotifications)"
+        
+        UIView.animate(withDuration: 0.7, animations: { [weak self] in
+            self?.ajmBadge.isHidden = !hasNotifications
+        })
+    }
+    
+    private func addSubviews() {
+        addSubview(iconImageView)
+        addSubview(ajmBadge)
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        iconImageView.layer.cornerRadius = self.bounds.width / 2
+        iconImageView.clipsToBounds = true
+        ajmBadge.layer.cornerRadius = ajmBadge.frame.width / 2
+        ajmBadge.clipsToBounds = true
+
     }
     
     override func updateConstraints() {
