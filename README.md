@@ -6,6 +6,6 @@ is released, it will stick to the nearest corner of the screen.
 
 This view has the option of being removed when it reaches the "red erase zone" (a UIView located at the bottom of the screen).
 
-
+TODO: This is a comment for PR
 
 
